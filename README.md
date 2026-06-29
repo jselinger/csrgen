@@ -36,7 +36,7 @@ A Docker-based web application for creating TLS/SSL Certificate Signing Requests
 ## Quick Start
 
 ```bash
-git clone https://github.com/nycon/csrgen.git
+git clone https://github.com/jselinger/csrgen.git
 cd csrgen
 docker compose up -d --build
 ```
@@ -86,7 +86,7 @@ brew install --cask docker
 ### Install & Run
 
 ```bash
-git clone https://github.com/nycon/csrgen.git
+git clone https://github.com/jselinger/csrgen.git
 cd csrgen
 docker compose up -d
 ```
@@ -153,7 +153,7 @@ docker-compose down
 Open PowerShell or Windows Terminal:
 
 ```powershell
-git clone https://github.com/nycon/csrgen.git
+git clone https://github.com/jselinger/csrgen.git
 cd csrgen
 docker compose up -d
 ```
@@ -229,7 +229,7 @@ docker compose version
 
 ```bash
 cd /opt
-sudo git clone https://github.com/nycon/csrgen.git
+sudo git clone https://github.com/jselinger/csrgen.git
 sudo chown -R $USER:$USER /opt/csrgen
 cd /opt/csrgen
 docker compose up -d
