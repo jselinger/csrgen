@@ -25,15 +25,15 @@
         <nav class="nav-tabs" role="tablist">
             <button class="nav-tab active" data-tab="generate" role="tab" aria-selected="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                CSR erstellen
+                Create CSR
             </button>
             <button class="nav-tab" data-tab="p12" role="tab" aria-selected="false">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 16l-4-4-4 4M12 12v9"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
-                P12 konvertieren
+                Convert P12
             </button>
             <button class="nav-tab" data-tab="inspect" role="tab" aria-selected="false">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                Zertifikat prüfen
+                Check Certificate
             </button>
         </nav>
         <button class="theme-toggle" id="theme-toggle" title="Design wechseln" aria-label="Zwischen hell und dunkel wechseln">
@@ -50,21 +50,21 @@
     <section id="tab-generate" class="tab-content active" role="tabpanel">
 
         <!-- Certificate Type Selector -->
-        <div class="section-label">Zertifikatstyp wählen</div>
+        <div class="section-label">Select Certificate Type</div>
         <div class="cert-type-grid">
             <button class="cert-type-card active" data-type="standard" type="button">
                 <div class="cert-type-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
                 <div class="cert-type-title">Standard</div>
-                <div class="cert-type-desc">Einzelne Domain</div>
+                <div class="cert-type-desc">Single Domain</div>
             </button>
             <button class="cert-type-card" data-type="san" type="button">
                 <div class="cert-type-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
                 </div>
                 <div class="cert-type-title">Multi-Domain (SAN)</div>
-                <div class="cert-type-desc">Mehrere Domains in einem Zertifikat</div>
+                <div class="cert-type-desc">Multiple domains in one certificate</div>
             </button>
             <button class="cert-type-card" data-type="wildcard" type="button">
                 <div class="cert-type-icon">
@@ -96,31 +96,31 @@
                         </div>
                         <!-- OU -->
                         <div class="form-group">
-                            <label for="field-ou">Abteilung (OU)</label>
-                            <input type="text" id="field-ou" name="ou" placeholder="IT-Abteilung">
+                            <label for="field-ou">Department (OU)</label>
+                            <input type="text" id="field-ou" name="ou" placeholder="IT Department">
                         </div>
                         <!-- Country -->
                         <div class="form-group">
-                            <label for="field-c">Land (C)</label>
-                            <input type="text" id="field-c" name="c" placeholder="DE" maxlength="2" list="country-list">
+                            <label for="field-c">Country (C)</label>
+                            <input type="text" id="field-c" name="c" placeholder="US" maxlength="2" list="country-list">
                             <small class="form-hint">2-stelliger Ländercode</small>
                             <datalist id="country-list">
-                                <option value="DE">Deutschland</option>
+                                <option value="DE">Germany</option>
                                 <option value="AT">Österreich</option>
-                                <option value="CH">Schweiz</option>
-                                <option value="US">Vereinigte Staaten</option>
+                                <option value="CH">Switzerland</option>
+                                <option value="US">United States selected</option>
                                 <option value="GB">Großbritannien</option>
-                                <option value="FR">Frankreich</option>
-                                <option value="NL">Niederlande</option>
-                                <option value="BE">Belgien</option>
-                                <option value="IT">Italien</option>
-                                <option value="ES">Spanien</option>
-                                <option value="PL">Polen</option>
+                                <option value="FR">France</option>
+                                <option value="NL">Netherlands</option>
+                                <option value="BE">Belgium</option>
+                                <option value="IT">Italy</option>
+                                <option value="ES">Spain</option>
+                                <option value="PL">Poland</option>
                                 <option value="SE">Schweden</option>
                                 <option value="NO">Norwegen</option>
                                 <option value="DK">Dänemark</option>
                                 <option value="FI">Finnland</option>
-                                <option value="CZ">Tschechien</option>
+                                <option value="CZ">Czech Republic</option>
                                 <option value="LU">Luxemburg</option>
                                 <option value="IE">Irland</option>
                                 <option value="PT">Portugal</option>
@@ -134,7 +134,7 @@
                         </div>
                         <!-- State -->
                         <div class="form-group">
-                            <label for="field-st">Bundesland / Region (ST)</label>
+                            <label for="field-st">State / Province / Region (ST)</label>
                             <input type="text" id="field-st" name="st" placeholder="Bayern">
                         </div>
                         <!-- City -->
@@ -144,7 +144,7 @@
                         </div>
                         <!-- Email -->
                         <div class="form-group">
-                            <label for="field-email">E-Mail (optional)</label>
+                            <label for="field-email">Email (optional)</label>
                             <input type="email" id="field-email" name="email" placeholder="admin@example.com">
                         </div>
                     </div>
@@ -153,18 +153,18 @@
                     <div id="san-section" class="san-section hidden">
                         <div class="san-header">
                             <h3>Subject Alternative Names (SAN)</h3>
-                            <small class="form-hint">Weitere Domains, die das Zertifikat abdecken soll</small>
+                            <small class="form-hint">Weitere Domains, die das Certificate abdecken soll</small>
                         </div>
                         <div id="san-list" class="san-list"></div>
                         <button type="button" id="add-san-btn" class="btn btn-outline btn-sm">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                            Domain hinzufügen
+                            Add Domain
                         </button>
                     </div>
 
                     <!-- Key Size -->
                     <div class="key-size-section">
-                        <label class="section-label-sm">Schlüssellänge</label>
+                        <label class="section-label-sm">Key Length</label>
                         <div class="radio-group">
                             <label class="radio-card">
                                 <input type="radio" name="key_size" value="2048" checked>
@@ -176,7 +176,7 @@
                             <label class="radio-card">
                                 <input type="radio" name="key_size" value="4096">
                                 <span class="radio-card-inner">
-                                    <span class="radio-card-title">4096 Bit</span>
+                                    <span class="radio-card-title">4096-bit</span>
                                     <span class="radio-card-desc">Höhere Sicherheit</span>
                                 </span>
                             </label>
@@ -187,7 +187,7 @@
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-lg" id="generate-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        CSR generieren
+                        Generate CSR
                     </button>
                 </div>
             </div>
@@ -220,11 +220,11 @@
                     <div class="btn-row">
                         <button type="button" class="btn btn-outline" id="copy-csr-btn">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                            CSR kopieren
+                            Copy CSR
                         </button>
                         <button type="button" class="btn btn-primary" id="download-csr-btn">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                            CSR herunterladen
+                            Download CSR
                         </button>
                     </div>
                 </div>
@@ -233,7 +233,7 @@
             <!-- KEY Output -->
             <div class="card card-warning">
                 <div class="card-header">
-                    <h2>Privater Schlüssel</h2>
+                    <h2>Private Key</h2>
                     <span class="badge badge-warning">Vertraulich</span>
                 </div>
                 <div class="card-body">
@@ -244,7 +244,7 @@
                     <div class="key-toggle">
                         <label class="toggle-label">
                             <input type="checkbox" id="show-key-toggle">
-                            <span>Schlüssel anzeigen</span>
+                            <span>Show Key</span>
                         </label>
                     </div>
                     <div class="pem-output hidden" id="key-output-wrap">
@@ -261,7 +261,7 @@
             <div class="btn-row results-actions">
                 <button type="button" class="btn btn-outline" id="reset-csr-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
-                    Alles zurücksetzen
+                    Reset All
                 </button>
             </div>
         </div>
@@ -274,7 +274,7 @@
                 <h2>Windows Zertifikats-Konvertierung</h2>
             </div>
             <div class="card-body">
-                <p class="card-description">Konvertieren Sie Zertifikate in gängige Windows-Formate wie PFX/P12, CER und P7B.</p>
+                <p class="card-description">Convert certificates to popular Windows formats such as PFX/P12, CER, and P7B.</p>
 
                 <form id="p12-form" enctype="multipart/form-data">
                     <div class="upload-grid">
@@ -283,7 +283,7 @@
                             <input type="file" id="p12-key-file" accept=".key,.pem,.txt" class="upload-input">
                             <div class="upload-content">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-                                <span class="upload-label">Privater Schlüssel (.key / .pem)</span>
+                                <span class="upload-label">Private Key (.key / .pem)</span>
                                 <span class="upload-hint">Für PFX/P12 benötigt</span>
                             </div>
                             <div class="upload-file-name hidden" id="key-file-name"></div>
@@ -293,7 +293,7 @@
                             <input type="file" id="p12-cert-file" accept=".crt,.pem,.cer,.txt" class="upload-input">
                             <div class="upload-content">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                                <span class="upload-label">Zertifikat (.crt / .pem / .cer)</span>
+                                <span class="upload-label">Certificate (.crt / .pem / .cer)</span>
                                 <span class="upload-hint">Datei hierher ziehen oder klicken</span>
                             </div>
                             <div class="upload-file-name hidden" id="cert-file-name"></div>
@@ -322,10 +322,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="p12-password">Export-Passwort (optional)</label>
+                            <label for="p12-password">Export-Password (optional)</label>
                             <div class="password-field">
-                                <input type="password" id="p12-password" name="password" placeholder="Passwort für PFX/P12">
-                                <button type="button" class="password-toggle" id="p12-pw-toggle" title="Passwort anzeigen" aria-label="Passwort anzeigen">
+                                <input type="password" id="p12-password" name="password" placeholder="Password für PFX/P12">
+                                <button type="button" class="password-toggle" id="p12-pw-toggle" title="Password anzeigen" aria-label="Password anzeigen">
                                     <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                                     <svg class="eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
                                 </button>
@@ -342,42 +342,42 @@
                                 <tbody>
                                     <tr>
                                         <th>IIS / RDP / Windows MMC</th>
-                                        <td><span class="san-tag">PFX (.pfx)</span> mit Private Key und optionaler Zertifikatskette</td>
+                                        <td><span class="san-tag">PFX (.pfx)</span> with private key and optional certificate chain</td>
                                     </tr>
                                     <tr>
                                         <th>Allgemein PKCS#12</th>
-                                        <td><span class="san-tag">P12 (.p12)</span> wie PFX, plattformuebergreifend</td>
+                                        <td><span class="san-tag">P12 (.p12)</span> like PFX, cross-platform</td>
                                     </tr>
                                     <tr>
                                         <th>Public Certificate (Binary)</th>
-                                        <td><span class="san-tag">CER (.cer, DER)</span> nur Zertifikat, kein Private Key</td>
+                                        <td><span class="san-tag">CER (.cer, DER)</span> Certificate only, no private key</td>
                                     </tr>
                                     <tr>
                                         <th>Public Certificate (Text)</th>
-                                        <td><span class="san-tag">CER (.cer, PEM)</span> nur Zertifikat, gut lesbar/editierbar</td>
+                                        <td><span class="san-tag">CER (.cer, PEM)</span> Certificate only, easy to read/edit</td>
                                     </tr>
                                     <tr>
                                         <th>Zertifikatskette weitergeben</th>
-                                        <td><span class="san-tag">P7B (.p7b)</span> Zertifikat + Kette, kein Private Key</td>
+                                        <td><span class="san-tag">P7B (.p7b)</span> Certificate + chain, no private key</td>
                                     </tr>
                                     <tr>
                                         <th>Java Keystore (JKS)</th>
-                                        <td>Nicht direkt exportiert. Erst <span class="san-tag">P12/PFX</span> erzeugen, dann mit keytool in JKS importieren.</td>
+                                        <td>Not exported directly. Only <span class="san-tag">P12/PFX</span> then import it into JKS with keytool.</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="alert alert-warning" style="margin-top: 1rem;">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                                <span>Wichtig: Private Keys sind nur in PFX/P12 enthalten. CER und P7B enthalten keinen Private Key.</span>
+                                <span>Important: Private keys are only included in PFX/P12. CER and P7B do not contain a private key.</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group" style="max-width: 500px; margin-top: 1rem;">
-                        <label for="p12-key-password">Schlüssel-Passwort (optional)</label>
+                        <label for="p12-key-password">Key password (optional)</label>
                         <div class="password-field">
-                            <input type="password" id="p12-key-password" name="key_password" placeholder="Nur wenn der private Key verschlüsselt ist">
-                            <button type="button" class="password-toggle" id="p12-key-pw-toggle" title="Passwort anzeigen" aria-label="Passwort anzeigen">
+                            <input type="password" id="p12-key-password" name="key_password" placeholder="Only if the private key is encrypted">
+                            <button type="button" class="password-toggle" id="p12-key-pw-toggle" title="Password anzeigen" aria-label="Password anzeigen">
                                 <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                                 <svg class="eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
                             </button>
@@ -399,10 +399,10 @@
     <section id="tab-inspect" class="tab-content hidden" role="tabpanel">
         <div class="card">
             <div class="card-header">
-                <h2>CSR oder Zertifikat prüfen</h2>
+                <h2>Check CSR or certificate</h2>
             </div>
             <div class="card-body">
-                <p class="card-description">Fügen Sie einen CSR oder ein Zertifikat im PEM-Format ein, um dessen Inhalt zu prüfen.</p>
+                <p class="card-description">Insert a CSR or certificate in PEM format to check its contents.</p>
 
                 <div class="upload-zone" id="inspect-upload-zone">
                     <input type="file" id="inspect-pem-file" accept=".pem,.crt,.cer,.csr,.txt" class="upload-input">
@@ -415,16 +415,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inspect-pem">PEM-Inhalt</label>
+                    <label for="inspect-pem">PEM content</label>
                     <textarea id="inspect-pem" rows="10" placeholder="-----BEGIN CERTIFICATE REQUEST-----&#10;...&#10;-----END CERTIFICATE REQUEST-----&#10;&#10;oder&#10;&#10;-----BEGIN CERTIFICATE-----&#10;...&#10;-----END CERTIFICATE-----"></textarea>
                 </div>
 
                 <div class="btn-row">
                     <button type="button" class="btn btn-primary" id="inspect-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                        Prüfen
+                        Check
                     </button>
-                    <button type="button" class="btn btn-outline" id="inspect-clear-btn">Leeren</button>
+                    <button type="button" class="btn btn-outline" id="inspect-clear-btn">Clear</button>
                 </div>
             </div>
         </div>
@@ -433,7 +433,7 @@
         <div id="inspect-results" class="hidden">
             <div class="card">
                 <div class="card-header">
-                    <h2 id="inspect-result-title">Ergebnis</h2>
+                    <h2 id="inspect-result-title">Result</h2>
                     <span class="badge" id="inspect-result-badge"></span>
                 </div>
                 <div class="card-body">
@@ -449,7 +449,7 @@
 
 <!-- Footer -->
 <footer class="footer">
-    <p>CSRgen – Zertifikatsanfragen einfach erstellt</p>
+    <p>CSRgen – Certificate requests created easily</p>
 </footer>
 
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>

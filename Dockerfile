@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-LABEL maintainer="CSRgen"
+LABEL maintainer="JS+CSRgen"
 LABEL description="CSR Generator - TLS/SSL Certificate Signing Request Tool"
 
 WORKDIR /app
