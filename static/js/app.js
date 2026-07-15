@@ -75,16 +75,16 @@
 
         if (type === "san") {
             sanSection.classList.remove("hidden");
-            cnHint.textContent = "Haupt-Domain (wird automatisch als SAN hinzugefügt)";
+            cnHint.textContent = "Main Domain (automatically added as SAN)";
             cnInput.placeholder = "www.example.com";
             if ($$("#san-list .san-entry").length === 0) addSanEntry();
         } else {
             sanSection.classList.add("hidden");
             if (type === "wildcard") {
-                cnHint.textContent = 'Wildcard-Domain, z.B. *.example.com';
+                cnHint.textContent = 'Wildcard-Domain, e.g. *.example.com';
                 cnInput.placeholder = "*.example.com";
             } else {
-                cnHint.textContent = "Der vollständige Domainname, z.B. www.example.com";
+                cnHint.textContent = "The full domain name, e.g., www.example.com";
                 cnInput.placeholder = "www.example.com";
             }
         }
