@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSRgen – Zertifikatsanfragen einfach erstellen</title>
+    <title>CSRgen – Easily create certificate requests</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -79,7 +79,7 @@
         <form id="csr-form" novalidate>
             <div class="card">
                 <div class="card-header">
-                    <h2>Zertifikatsinformationen</h2>
+                    <h2>Certificate information</h2>
                 </div>
                 <div class="card-body">
                     <div class="form-grid">
@@ -87,7 +87,7 @@
                         <div class="form-group full-width">
                             <label for="field-cn">Common Name (CN) <span class="required">*</span></label>
                             <input type="text" id="field-cn" name="cn" required placeholder="www.example.com" autocomplete="off">
-                            <small id="cn-hint" class="form-hint">Der vollständige Domainname, z.B. www.example.com</small>
+                            <small id="cn-hint" class="form-hint">full domain name, EX: www.example.com</small>
                         </div>
                         <!-- Organisation -->
                         <div class="form-group">
@@ -103,12 +103,12 @@
                         <div class="form-group">
                             <label for="field-c">Country (C)</label>
                             <input type="text" id="field-c" name="c" placeholder="US" maxlength="2" list="country-list">
-                            <small class="form-hint">2-stelliger Ländercode</small>
+                            <small class="form-hint">2-digit country code</small>
                             <datalist id="country-list">
+                                <option value="US">United States selected</option>							
                                 <option value="DE">Germany</option>
                                 <option value="AT">Österreich</option>
                                 <option value="CH">Switzerland</option>
-                                <option value="US">United States selected</option>
                                 <option value="GB">Großbritannien</option>
                                 <option value="FR">France</option>
                                 <option value="NL">Netherlands</option>
@@ -135,12 +135,12 @@
                         <!-- State -->
                         <div class="form-group">
                             <label for="field-st">State / Province / Region (ST)</label>
-                            <input type="text" id="field-st" name="st" placeholder="Bayern">
+                            <input type="text" id="field-st" name="st" placeholder="MA">
                         </div>
                         <!-- City -->
                         <div class="form-group">
-                            <label for="field-l">Stadt (L)</label>
-                            <input type="text" id="field-l" name="l" placeholder="München">
+                            <label for="field-l">City</label>
+                            <input type="text" id="field-l" name="l" placeholder="Boston">
                         </div>
                         <!-- Email -->
                         <div class="form-group">
@@ -153,7 +153,7 @@
                     <div id="san-section" class="san-section hidden">
                         <div class="san-header">
                             <h3>Subject Alternative Names (SAN)</h3>
-                            <small class="form-hint">Weitere Domains, die das Certificate abdecken soll</small>
+                            <small class="form-hint">Additional domains to be covered by the certificate</small>
                         </div>
                         <div id="san-list" class="san-list"></div>
                         <button type="button" id="add-san-btn" class="btn btn-outline btn-sm">
@@ -170,14 +170,14 @@
                                 <input type="radio" name="key_size" value="2048" checked>
                                 <span class="radio-card-inner">
                                     <span class="radio-card-title">2048 Bit</span>
-                                    <span class="radio-card-desc">Standard – schneller</span>
+                                    <span class="radio-card-desc">Standard – faster</span>
                                 </span>
                             </label>
                             <label class="radio-card">
                                 <input type="radio" name="key_size" value="4096">
                                 <span class="radio-card-inner">
                                     <span class="radio-card-title">4096-bit</span>
-                                    <span class="radio-card-desc">Höhere Sicherheit</span>
+                                    <span class="radio-card-desc">Enhanced safety</span>
                                 </span>
                             </label>
                         </div>
@@ -199,7 +199,7 @@
             <div class="card" id="details-card">
                 <div class="card-header">
                     <h2>CSR Details</h2>
-                    <span class="badge badge-success">Erfolgreich erstellt</span>
+                    <span class="badge badge-success">Successfully created</span>
                 </div>
                 <div class="card-body">
                     <table class="details-table" id="csr-details-table">
@@ -234,12 +234,12 @@
             <div class="card card-warning">
                 <div class="card-header">
                     <h2>Private Key</h2>
-                    <span class="badge badge-warning">Vertraulich</span>
+                    <span class="badge badge-warning">Confidential</span>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-warning">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                        <span>Den privaten Schlüssel sicher aufbewahren und niemals weitergeben!</span>
+                        <spanKeep the private key safe and never share it!</span>
                     </div>
                     <div class="key-toggle">
                         <label class="toggle-label">
@@ -253,7 +253,7 @@
                     <div class="btn-row">
                         <button type="button" class="btn btn-warning" id="download-key-btn">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                            KEY herunterladen
+                            Download KEY
                         </button>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
     <section id="tab-p12" class="tab-content hidden" role="tabpanel">
         <div class="card">
             <div class="card-header">
-                <h2>Windows Zertifikats-Konvertierung</h2>
+                <h2>Windows Certificate Conversion</h2>
             </div>
             <div class="card-body">
                 <p class="card-description">Convert certificates to popular Windows formats such as PFX/P12, CER, and P7B.</p>
@@ -284,7 +284,7 @@
                             <div class="upload-content">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
                                 <span class="upload-label">Private Key (.key / .pem)</span>
-                                <span class="upload-hint">Für PFX/P12 benötigt</span>
+                                <span class="upload-hint">PFX/P12 requires</span>
                             </div>
                             <div class="upload-file-name hidden" id="key-file-name"></div>
                         </div>
@@ -294,7 +294,7 @@
                             <div class="upload-content">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                                 <span class="upload-label">Certificate (.crt / .pem / .cer)</span>
-                                <span class="upload-hint">Datei hierher ziehen oder klicken</span>
+                                <span class="upload-hint">Drag and drop a file here or click</span>
                             </div>
                             <div class="upload-file-name hidden" id="cert-file-name"></div>
                         </div>
@@ -304,21 +304,21 @@
                         <input type="file" id="p12-chain-file" accept=".crt,.pem,.cer,.txt" class="upload-input">
                         <div class="upload-content">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-                            <span class="upload-label">Zertifikatskette / Intermediate (optional)</span>
-                            <span class="upload-hint">Wird in PFX/P12/P7B eingebunden</span>
+                            <span class="upload-label">Certificate chain / Intermediate (optional)</span>
+                            <span class="upload-hint">Embedded in PFX/P12/P7B</span>
                         </div>
                         <div class="upload-file-name hidden" id="chain-file-name"></div>
                     </div>
 
                     <div class="form-grid" style="margin-top: 1.5rem;">
                         <div class="form-group">
-                            <label for="target-format">Zielformat</label>
+                            <label for="target-format">Target format</label>
                             <select id="target-format" name="target_format">
                                 <option value="pfx">PFX (.pfx) – Windows Import</option>
                                 <option value="p12">P12 (.p12) – PKCS#12</option>
-                                <option value="cer_der">CER (.cer, DER) – Binär</option>
+                                <option value="cer_der">CER (.cer, DER) – Binary</option>
                                 <option value="cer_pem">CER (.cer, PEM) – Text</option>
-                                <option value="p7b">P7B (.p7b) – Zertifikatskette</option>
+                                <option value="p7b">P7B (.p7b) – Certificate chain</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -335,7 +335,7 @@
 
                     <div class="card format-help-card">
                         <div class="card-header">
-                            <h2>Format-Hilfe: Was brauche ich wofür?</h2>
+                            <h2>Format Guide: What do I need for what?</h2>
                         </div>
                         <div class="card-body">
                             <table class="details-table">
@@ -387,7 +387,7 @@
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary btn-lg" id="convert-p12-btn">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
-                            Exportieren
+                            Export
                         </button>
                     </div>
                 </form>
@@ -408,8 +408,8 @@
                     <input type="file" id="inspect-pem-file" accept=".pem,.crt,.cer,.csr,.txt" class="upload-input">
                     <div class="upload-content">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                        <span class="upload-label">PEM-Datei hochladen (.pem/.csr/.crt)</span>
-                        <span class="upload-hint">Datei hierher ziehen oder klicken</span>
+                        <span class="upload-label">Upload PEM file (.pem/.csr/.crt)</span>
+                        <span class="upload-hint">Drag and drop a file here or click</span>
                     </div>
                     <div class="upload-file-name hidden" id="inspect-file-name"></div>
                 </div>
