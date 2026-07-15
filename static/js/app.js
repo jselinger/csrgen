@@ -97,7 +97,7 @@
         entry.className = "san-entry";
         entry.innerHTML = `
             <input type="text" placeholder="mail.example.com" value="${escapeHtml(value)}">
-            <button type="button" class="san-remove" title="Entfernen" aria-label="SAN entfernen">
+            <button type="button" class="san-remove" title="Remove" aria-label="Remove SAN">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
         `;
@@ -123,14 +123,14 @@
 
         const cn = $("#field-cn").value.trim();
         if (!cn) {
-            showToast("Bitte geben Sie einen Common Name (CN) ein.", "warning");
+            showToast("Please enter a Common Name (CN).", "warning");
             $("#field-cn").focus();
             return;
         }
 
         const countryVal = $("#field-c").value.trim().toUpperCase();
         if (countryVal && countryVal.length !== 2) {
-            showToast("Der Ländercode muss genau 2 Zeichen lang sein.", "warning");
+            showToast("The country code must be exactly 2 characters long.", "warning");
             $("#field-c").focus();
             return;
         }
@@ -160,7 +160,7 @@
             const data = await res.json();
 
             if (!res.ok) {
-                showToast(data.error || "Fehler bei der Generierung.", "error");
+                showToast(data.error || "Generation error.", "error");
                 return;
             }
 
@@ -169,9 +169,9 @@
             generatedCN = data.cn || cn;
 
             displayResults(data);
-            showToast("CSR und Schlüssel erfolgreich erstellt!", "success");
+            showToast("CSR and key successfully created!", "success");
         } catch (err) {
-            showToast("Verbindungsfehler. Bitte versuchen Sie es erneut.", "error");
+            showToast("Connection error. Please try again.", "error");
         } finally {
             btn.classList.remove("loading");
             btn.disabled = false;
@@ -202,12 +202,12 @@
                 const sanHtml = d.sans.map(s => `<span class="san-tag">${escapeHtml(s)}</span>`).join(" ");
                 addDetailRow(tbody, "SANs", sanHtml, true);
             }
-            if (d.key_size) addDetailRow(tbody, "Schlüssellänge", `${d.key_size} Bit`);
-            if (d.signature_algorithm) addDetailRow(tbody, "Signatur-Algorithmus", d.signature_algorithm);
+            if (d.key_size) addDetailRow(tbody, "Key length", `${d.key_size} Bit`);
+            if (d.signature_algorithm) addDetailRow(tbody, "Signature algorithm", d.signature_algorithm);
             if (d.is_valid !== undefined) {
-                addDetailRow(tbody, "Signatur gültig", d.is_valid
-                    ? '<span class="status-valid">Ja</span>'
-                    : '<span class="status-expired">Nein</span>', true);
+                addDetailRow(tbody, "Signature valid", d.is_valid
+                    ? '<span class="status-valid">Yes</span>'
+                    : '<span class="status-expired">No</span>', true);
             }
         }
 
@@ -233,7 +233,7 @@
 
         selectCertType("standard");
         $("#field-cn").focus();
-        showToast("Alles wurde auf Standard zurückgesetzt.", "info");
+        showToast("Everything was reset to default.", "info");
     }
 
     /* ===== P12 Conversion ===== */
@@ -248,11 +248,11 @@
         const keyPassword = $("#p12-key-password").value;
 
         if (!certFile) {
-            showToast("Bitte wählen Sie eine Zertifikatsdatei aus.", "warning");
+            showToast("Please select a certificate file.", "warning");
             return;
         }
         if ((targetFormat === "pfx" || targetFormat === "p12") && !keyFile) {
-            showToast("Für PFX/P12 wird eine Schlüsseldatei benötigt.", "warning");
+            showToast("A key file is required for PFX/P12.", "warning");
             return;
         }
 
@@ -276,7 +276,7 @@
 
             if (!res.ok) {
                 const errData = await res.json().catch(() => ({}));
-                showToast(errData.error || "Konvertierungsfehler.", "error");
+                showToast(errData.error || "Conversion error.", "error");
                 return;
             }
 
@@ -286,9 +286,9 @@
             const filename = match ? match[1] : "certificate.p12";
 
             downloadBlob(blob, filename);
-            showToast(`${filename} erfolgreich erstellt!`, "success");
+            showToast(`${filename} Successfully created!`, "success");
         } catch (err) {
-            showToast("Verbindungsfehler. Bitte versuchen Sie es erneut.", "error");
+            showToast("Connection error. Please try again.", "error");
         } finally {
             btn.classList.remove("loading");
             btn.disabled = false;
@@ -299,7 +299,7 @@
     async function inspectPEM() {
         const pem = $("#inspect-pem").value.trim();
         if (!pem) {
-            showToast("Bitte fügen Sie einen CSR oder ein Zertifikat ein.", "warning");
+            showToast("Please insert a CSR or a certificate.", "warning");
             $("#inspect-pem").focus();
             return;
         }
@@ -317,13 +317,13 @@
             const data = await res.json();
 
             if (!res.ok) {
-                showToast(data.error || "Fehler beim Prüfen.", "error");
+                showToast(data.error || "Error during verification.", "error");
                 return;
             }
 
             displayInspectResults(data);
         } catch (err) {
-            showToast("Verbindungsfehler.", "error");
+            showToast("Connection error.", "error");
         } finally {
             btn.classList.remove("loading");
             btn.disabled = false;
@@ -353,17 +353,17 @@
                 addDetailRow(tbody, "SANs", sanHtml, true);
             }
             if (d.key_size) addDetailRow(tbody, "Schlüssellänge", `${d.key_size} Bit`);
-            if (d.signature_algorithm) addDetailRow(tbody, "Signatur-Algorithmus", d.signature_algorithm);
+            if (d.signature_algorithm) addDetailRow(tbody, "Signature algorithm", d.signature_algorithm);
             if (d.is_valid !== undefined) {
-                addDetailRow(tbody, "Signatur gültig", d.is_valid
-                    ? '<span class="status-valid">Ja</span>'
-                    : '<span class="status-expired">Nein</span>', true);
+                addDetailRow(tbody, "Signature valid", d.is_valid
+                    ? '<span class="status-valid">Yes</span>'
+                    : '<span class="status-expired">No</span>', true);
             }
         } else if (data.type === "certificate") {
-            title.textContent = "Zertifikat";
+            title.textContent = "Certificate";
             const d = data.details;
             const isExpired = d.is_expired;
-            badge.textContent = isExpired ? "Abgelaufen" : "Gültig";
+            badge.textContent = isExpired ? "Expired" : "Valid";
             badge.className = isExpired ? "badge badge-error" : "badge badge-success";
 
             if (d.subject) {
@@ -371,20 +371,20 @@
             }
             if (d.issuer) {
                 const issuerStr = Object.entries(d.issuer).map(([k, v]) => `${k}: ${v}`).join(", ");
-                addDetailRow(tbody, "Aussteller", issuerStr);
+                addDetailRow(tbody, "Issuer", issuerStr);
             }
             if (d.sans && d.sans.length) {
                 const sanHtml = d.sans.map(s => `<span class="san-tag">${escapeHtml(s)}</span>`).join(" ");
                 addDetailRow(tbody, "SANs", sanHtml, true);
             }
-            if (d.serial) addDetailRow(tbody, "Seriennummer", d.serial);
-            if (d.not_before) addDetailRow(tbody, "Gültig ab", d.not_before);
+            if (d.serial) addDetailRow(tbody, "Serial number", d.serial);
+            if (d.not_before) addDetailRow(tbody, "Valid from", d.not_before);
             if (d.not_after) {
                 const cls = isExpired ? "status-expired" : "status-valid";
-                addDetailRow(tbody, "Gültig bis", `<span class="${cls}">${escapeHtml(d.not_after)}</span>`, true);
+                addDetailRow(tbody, "Valid until", `<span class="${cls}">${escapeHtml(d.not_after)}</span>`, true);
             }
-            if (d.key_size) addDetailRow(tbody, "Schlüssellänge", `${d.key_size} Bit`);
-            if (d.signature_algorithm) addDetailRow(tbody, "Signatur-Algorithmus", d.signature_algorithm);
+            if (d.key_size) addDetailRow(tbody, "Key length", `${d.key_size} Bit`);
+            if (d.signature_algorithm) addDetailRow(tbody, "Signature algorithm", d.signature_algorithm);
         }
 
         container.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -409,8 +409,8 @@
 
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(
-            () => showToast("In die Zwischenablage kopiert!", "success"),
-            () => showToast("Kopieren fehlgeschlagen.", "error")
+            () => showToast("Copied to clipboard!", "success"),
+            () => showToast("Copy failed.", "error")
         );
     }
 
@@ -471,10 +471,10 @@
                 fileName.textContent = file.name;
                 fileName.classList.remove("hidden");
                 zone.classList.add("has-file");
-                showToast("Datei geladen. Jetzt auf \"Prüfen\" klicken.", "success");
+                showToast("File loaded. Now click \"Check\".", "success");
             };
             reader.onerror = () => {
-                showToast("Datei konnte nicht gelesen werden.", "error");
+                showToast("File could not be read.", "error");
             };
             reader.readAsText(file);
         };
@@ -590,14 +590,14 @@
             const isPassword = input.type === "password";
             input.type = isPassword ? "text" : "password";
             this.classList.toggle("active", isPassword);
-            this.title = isPassword ? "Passwort verbergen" : "Passwort anzeigen";
+            this.title = isPassword ? "Hide password" : "Show password";
         });
         $("#p12-key-pw-toggle").addEventListener("click", function () {
             const input = $("#p12-key-password");
             const isPassword = input.type === "password";
             input.type = isPassword ? "text" : "password";
             this.classList.toggle("active", isPassword);
-            this.title = isPassword ? "Passwort verbergen" : "Passwort anzeigen";
+            this.title = isPassword ? "PHide password" : "Show password";
         });
 
         /* Inspect */
