@@ -92,7 +92,7 @@ def index():
 def generate_csr():
     data = request.get_json(silent=True)
     if not data:
-        return jsonify({"error": "Ungültige Anfrage."}), 400
+        return jsonify({"error": "Invalid request."}), 400
 
     cn = (data.get("cn") or "").strip()
     o = (data.get("o") or "").strip()
@@ -106,13 +106,13 @@ def generate_csr():
     san_names = data.get("san_names", [])
 
     if not cn:
-        return jsonify({"error": "Common Name (CN) ist ein Pflichtfeld."}), 400
+        return jsonify({"error": "Common Name (CN) is a mandatory field."}), 400
 
     if c and len(c) != 2:
-        return jsonify({"error": "Ländercode muss genau 2 Zeichen lang sein (z.B. DE)."}), 400
+        return jsonify({"error": "The country code must be exactly 2 characters long (e.g., US)."}), 400
 
     if key_size not in (2048, 4096):
-        return jsonify({"error": "Schlüssellänge muss 2048 oder 4096 sein."}), 400
+        return jsonify({"error": "The key length must be 2048 or 4096."}), 400
 
     try:
         key = rsa.generate_private_key(public_exponent=65537, key_size=key_size)
@@ -172,7 +172,7 @@ def generate_csr():
 
     except Exception:
         _logger.exception("CSR generation failed")
-        return jsonify({"error": "Fehler bei der Generierung."}), 500
+        return jsonify({"error": "Generation error."}), 500
 
 
 @app.route("/api/convert-p12", methods=["POST"])
@@ -185,11 +185,11 @@ def convert_p12():
     target_format = (request.form.get("target_format", "p12") or "p12").lower()
 
     if not cert_file:
-        return jsonify({"error": "Zertifikatsdatei wird benötigt."}), 400
+        return jsonify({"error": "Certificate file is required."}), 400
 
     supported_formats = {"p12", "pfx", "cer_der", "cer_pem", "p7b"}
     if target_format not in supported_formats:
-        return jsonify({"error": "Unbekanntes Zielformat."}), 400
+        return jsonify({"error": "Unknown target format."}), 400
 
     try:
         cert_data = cert_file.read()
@@ -197,7 +197,7 @@ def convert_p12():
 
         certificates = _load_certificates_from_data(cert_data)
         if not certificates:
-            return jsonify({"error": "Zertifikat konnte nicht gelesen werden."}), 400
+            return jsonify({"error": "Certificate could not be read."}), 400
         certificate = certificates[0]
 
         chain_certs = _load_certificates_from_data(chain_data) if chain_data else []
@@ -211,7 +211,7 @@ def convert_p12():
 
         if target_format in {"p12", "pfx"}:
             if not key_file:
-                return jsonify({"error": "Für P12/PFX wird eine Schlüsseldatei benötigt."}), 400
+                return jsonify({"error": "A key file is required for P12/PFX."}), 400
 
             key_data = key_file.read()
             private_key = _load_private_key_from_data(
@@ -270,15 +270,15 @@ def convert_p12():
                 download_name=f"{base_filename}.p7b",
             )
 
-        return jsonify({"error": "Konvertierung nicht möglich."}), 400
+        return jsonify({"error": "Conversion not possible."}), 400
 
     except ValueError:
         # e.g. wrong password, invalid key/cert formats
         _logger.exception("P12 conversion failed (value error)")
-        return jsonify({"error": "Konvertierung fehlgeschlagen: Schlüssel/Zertifikat/Passwort prüfen."}), 400
+        return jsonify({"error": "Conversion failed: Check key/certificate/password."}), 400
     except Exception:
         _logger.exception("P12 conversion failed")
-        return jsonify({"error": "Konvertierung fehlgeschlagen."}), 400
+        return jsonify({"error": "Conversion failed."}), 400
 
 
 @app.route("/api/inspect", methods=["POST"])
@@ -287,7 +287,7 @@ def inspect_pem():
     pem_text = (data.get("pem") or "").strip() if data else ""
 
     if not pem_text:
-        return jsonify({"error": "Kein PEM-Inhalt übermittelt."}), 400
+        return jsonify({"error": "No PEM content transmitted."}), 400
 
     pem_bytes = pem_text.encode()
 
@@ -298,7 +298,7 @@ def inspect_pem():
             return jsonify({"type": "csr", "details": details})
         except Exception:
             _logger.exception("Inspect CSR failed")
-            return jsonify({"error": "CSR konnte nicht gelesen werden."}), 400
+            return jsonify({"error": "CSR could not be read."}), 400
 
     elif "BEGIN CERTIFICATE" in pem_text:
         try:
@@ -307,10 +307,10 @@ def inspect_pem():
             return jsonify({"type": "certificate", "details": details})
         except Exception:
             _logger.exception("Inspect certificate failed")
-            return jsonify({"error": "Zertifikat konnte nicht gelesen werden."}), 400
+            return jsonify({"error": "Certificate could not be read."}), 400
 
     else:
-        return jsonify({"error": "Unbekanntes PEM-Format. Bitte CSR oder Zertifikat einfügen."}), 400
+        return jsonify({"error": "Unknown PEM format. Please paste the CSR or certificate."}), 400
 
 
 def _build_san_list(cn, san_names):
